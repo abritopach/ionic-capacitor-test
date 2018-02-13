@@ -1,14 +1,13 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Ionic Capacitor Camera
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <p>Using Capacitor in Ionic</p>
+  <img *ngIf="image" [src]="image" />
+  <button (click)="takePicture()" ion-button color="primary">Take Picture</button>
 </ion-content>

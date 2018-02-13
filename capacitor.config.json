@@ -1,0 +1,5 @@
+{
+    "bundledWebRuntime": true,
+    "webDir": "www",
+    "windowsAndroidStudioPath": ""
+}
