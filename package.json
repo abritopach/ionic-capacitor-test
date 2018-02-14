@@ -10,7 +10,8 @@
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "capacitor": "capacitor"
+    "capacitor": "capacitor",
+    "android": "ionic-app-scripts build --prod && npx capacitor copy android && npx capacitor open android"
   },
   "dependencies": {
     "@angular/common": "5.0.3",

@@ -26,14 +26,12 @@ export class HomePage {
         quality: 100,
         resultType: 'base64'
     }).then((result) => {
-        console.log(result);
+        console.log(result.base64_data);
+        this.image = this.sanitizer.bypassSecurityTrustResourceUrl(result && result.base64_data);
     }).catch((err) => {
         console.log(err);
         console.log('Sorry pal, not going to happen');
     });
-
-    this.image = this.sanitizer.bypassSecurityTrustResourceUrl(image && ('data:image/jpeg;base64,' + image['base64_data']));
-
 }
 
 }
