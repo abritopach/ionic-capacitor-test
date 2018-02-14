@@ -15,6 +15,10 @@ export class HomePage {
   constructor(public navCtrl: NavController, private sanitizer: DomSanitizer) {
 
     console.log("Capacitor.platform: ", Capacitor.platform);
+
+    if (Capacitor.platform != "web" ) {
+        this.networkConnection();
+    }
   }
 
   takePicture() {
@@ -22,7 +26,7 @@ export class HomePage {
 
     const { Camera } = Plugins;
 
-    const image = /*await*/ Camera.getPhoto({
+    /*const image = await*/ Camera.getPhoto({
         quality: 100,
         resultType: 'base64'
     }).then((result) => {
@@ -30,8 +34,31 @@ export class HomePage {
         this.image = this.sanitizer.bypassSecurityTrustResourceUrl(result && result.base64_data);
     }).catch((err) => {
         console.log(err);
-        console.log('Sorry pal, not going to happen');
+        console.log('Error', err);
     });
 }
+
+    networkConnection() {
+        const { Network } = Plugins;
+
+        let handler = Network.addListener('networkStatusChange', (err, status) => {
+            console.log("Network status changed", status);
+        });
+
+        // To stop listening:
+        // handler.remove();
+
+        // Get the current network status.
+        let status = /*await*/ Network.getStatus();
+        console.log({title: 'Status network'}, status);
+
+        // Example output:
+        /*
+        {
+            "connected": true,
+            "connectionType": "wifi"
+        }
+        */
+    }
 
 }
